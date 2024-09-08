@@ -24,11 +24,14 @@ android {
     defaultConfig {
         applicationId "org.firstinspires.ftc.teamcode"
         minSdkVersion 24
+        //noinspection ExpiredTargetSdkVersion
+        targetSdkVersion 28
         versionCode 1
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -36,12 +39,19 @@ android {
         }
     }
 }
-
+repositories {
+    google()
+    mavenCentral()
+}
 dependencies {
     implementation project(':FtcRobotController')
     implementation 'org.tensorflow:tensorflow-lite:2.4.0'
-    implementation 'com.github.opencv:opencv:4.5.5'
+    implementation project(':openCV')
+    // apenas para CI
+    implementation 'pub.devrel:easypermissions:3.0.0'
     testImplementation 'junit:junit:4.13.2'
+    //noinspection GradleDependency
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
+    //noinspection GradleDependency
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 }
