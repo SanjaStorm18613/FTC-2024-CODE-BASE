@@ -16,6 +16,8 @@ public class ArmMechanism {
         limitSwitch = hardwareMap.get(DigitalChannel.class, "limit_switch_arm");
     }
 
+    //TODO
+    // Macro erguer braço
     public void raiseArm() {
         if (!limitSwitch.getState()) {
             armMotor.setPower(0.5);
@@ -23,7 +25,8 @@ public class ArmMechanism {
             stopArm();
         }
     }
-
+    //TODO
+    //Macro abaixar braço
     public void lowerArm() {
         armMotor.setPower(-0.5);
     }

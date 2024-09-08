@@ -17,7 +17,8 @@ public class ClawMechanism {
         clawServo = hardwareMap.get(Servo.class, "claw_servo");
         limitSwitchClaw = hardwareMap.get(DigitalChannel.class, "limit_switch_claw");
     }
-
+    //Todo
+    //Macro para agarrar gamepiece
     public void grabSample() {
         if (!isClawClosed()) {
             clawServo.setPosition(1);
