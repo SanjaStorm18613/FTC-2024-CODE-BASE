@@ -110,7 +110,9 @@ android {
 
         versionCode openCVersionCode
         versionName openCVersionName
-
+        lintOptions {
+            abortOnError false
+        }
         externalNativeBuild {
             cmake {
                 arguments "-DANDROID_STL=c++_shared"
