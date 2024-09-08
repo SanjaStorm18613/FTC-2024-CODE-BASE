@@ -126,10 +126,10 @@ public class Camera2Renderer extends CameraGLRendererBase {
                             "Time out waiting to lock camera opening.");
                 }
                 Log.i(LOGTAG, "Opening camera: " + mCameraID);
-                @SuppressLint("MissingPermission")
+
                 manager.openCamera(mCameraID, mStateCallback, mBackgroundHandler);
             }
-        } catch (CameraAccessException e) {
+
         } catch (CameraAccessException e) {
             Log.e(LOGTAG, "OpenCamera - Camera Access Exception");
         } catch (IllegalArgumentException e) {

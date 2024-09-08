@@ -1,12 +1,5 @@
 package org.ouropencv.android;
 
-import java.util.List;
-
-import org.opencv.BuildConfig;
-import org.opencv.R;
-import org.ouropencv.core.Mat;
-import org.ouropencv.core.Size;
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
@@ -19,6 +12,13 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
+
+import org.ouropencv.BuildConfig;
+import org.ouropencv.R;
+import org.ouropencv.core.Mat;
+import org.ouropencv.core.Size;
+
+import java.util.List;
 
 /**
  * This is a basic class, implementing the interaction with Camera and OpenCV library.

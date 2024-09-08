@@ -104,7 +104,7 @@ android {
     //compileSdkVersion 26
 
     defaultConfig {
-       // minSdkVersion 21
+        minSdkVersion 21
         //targetSdkVersion 26
 
         versionCode openCVersionCode
