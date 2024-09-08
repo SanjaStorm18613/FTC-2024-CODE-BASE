@@ -54,4 +54,5 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     //noinspection GradleDependency
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+    implementation 'org.openftc:apriltag:2.1.0'
 }
