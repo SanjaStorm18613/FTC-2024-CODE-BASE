@@ -1,4 +1,4 @@
-package org.opencv.engine;
+package org.ouropencv.engine;
 
 /**
 * Class provides a Java interface for OpenCV Engine Service. It's synchronous with native OpenCVEngine class.
