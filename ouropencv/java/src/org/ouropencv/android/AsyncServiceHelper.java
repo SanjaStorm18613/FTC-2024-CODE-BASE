@@ -4,7 +4,7 @@ import java.io.File;
 import java.util.StringTokenizer;
 
 import org.ouropencv.core.Core;
-import org.opencv.engine.OpenCVEngineInterface;
+import org.ouropencv.engine.OpenCVEngineInterface;
 
 import android.content.ComponentName;
 import android.content.Context;

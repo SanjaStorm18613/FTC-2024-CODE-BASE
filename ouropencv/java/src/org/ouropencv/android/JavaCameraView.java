@@ -1,7 +1,5 @@
 package org.ouropencv.android;
 
-import java.util.List;
-
 import android.content.Context;
 import android.graphics.ImageFormat;
 import android.graphics.SurfaceTexture;
@@ -12,11 +10,13 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.view.ViewGroup.LayoutParams;
 
-import org.opencv.BuildConfig;
+import org.ouropencv.BuildConfig;
 import org.ouropencv.core.CvType;
 import org.ouropencv.core.Mat;
 import org.ouropencv.core.Size;
 import org.ouropencv.imgproc.Imgproc;
+
+import java.util.List;
 
 /**
  * This class is an implementation of the Bridge View between OpenCV and Java Camera.
