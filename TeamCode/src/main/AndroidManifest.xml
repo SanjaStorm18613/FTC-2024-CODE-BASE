@@ -9,18 +9,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="org.firstinspires.ftc.teamcode">
 
-    <uses-permission android:name="android.permission.CAMERA" />
-
-
-    <uses-feature android:name="android.hardware.camera" android:required="false" />
 
     <application
         android:allowBackup="true"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        tools:ignore="MissingApplicationIcon"
-        tools:replace="android:theme">
+        tools:ignore="MissingApplicationIcon">
+
 
 
     </application>
