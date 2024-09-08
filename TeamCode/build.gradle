@@ -29,6 +29,7 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -36,12 +37,17 @@ android {
         }
     }
 }
-
+repositories {
+    google()
+    mavenCentral()
+}
 dependencies {
     implementation project(':FtcRobotController')
+    implementation project(':opencv')
     implementation 'org.tensorflow:tensorflow-lite:2.4.0'
-    implementation 'com.github.opencv:opencv:4.5.5'
     testImplementation 'junit:junit:4.13.2'
+    //noinspection GradleDependency
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
+    //noinspection GradleDependency
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 }
