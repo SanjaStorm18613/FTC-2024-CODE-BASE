@@ -22,7 +22,7 @@ public class FTCRobotAutonomous extends LinearOpMode {
         telemetry.update();
         waitForStart();  // Espera o start
 
-        if (opModeIsActive()) {  // Checa se o opmode tá rodando
+        if (opModeIsActive()) {  
             if (gamePieceDetector.detectInitialSample()) {
                 drivetrain.moveToSample();  // Vai pro SAMPLE
                 aprilTagDetector.detectAprilTags();  // Ajusta com as tags
