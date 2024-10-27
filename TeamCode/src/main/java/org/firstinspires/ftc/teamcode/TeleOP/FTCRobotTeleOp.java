@@ -1,7 +1,12 @@
-package org.firstinspires.ftc.teamcode;
+package org.firstinspires.ftc.teamcode.TeleOP;
 
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+
+import org.firstinspires.ftc.teamcode.Subsystens.ArmMechanism;
+import org.firstinspires.ftc.teamcode.Subsystens.ClawMechanism;
+import org.firstinspires.ftc.teamcode.Subsystens.Drivetrain;
+import org.firstinspires.ftc.teamcode.Vision.CameraPermissionManager;
 
 @TeleOp(name="FTCRobotTeleOp", group="FTC")
 public class FTCRobotTeleOp extends LinearOpMode {
@@ -48,9 +53,9 @@ public class FTCRobotTeleOp extends LinearOpMode {
     }
 
     private void initializeRobot() {
-        drivetrain = new Drivetrain(hardwareMap);
-        armMechanism = new ArmMechanism(hardwareMap);
-        clawMechanism = new ClawMechanism(hardwareMap);
+        drivetrain = new Drivetrain(this);
+        armMechanism = new ArmMechanism(this);
+        clawMechanism = new ClawMechanism(this);
         permissionManager = new CameraPermissionManager();
     }
 

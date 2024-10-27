@@ -1,7 +1,7 @@
-package org.firstinspires.ftc.teamcode;
+package org.firstinspires.ftc.teamcode.Subsystens;
 
+import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.DigitalChannel;
 
 public class ArmMechanism {
@@ -11,9 +11,9 @@ public class ArmMechanism {
     private DcMotor armMotor;
     private DigitalChannel limitSwitch;
 
-    public ArmMechanism(HardwareMap hardwareMap) {
-        armMotor = hardwareMap.get(DcMotor.class, "arm_motor");
-        limitSwitch = hardwareMap.get(DigitalChannel.class, "limit_switch_arm");
+    public ArmMechanism(LinearOpMode Opmode) {
+        armMotor = Opmode.hardwareMap.get(DcMotor.class, "arm_motor");
+        limitSwitch = Opmode.hardwareMap.get(DigitalChannel.class, "limit_switch_arm");
     }
 
     //TODO

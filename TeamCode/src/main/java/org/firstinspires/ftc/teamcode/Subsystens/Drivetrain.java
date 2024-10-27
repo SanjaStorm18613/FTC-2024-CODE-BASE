@@ -1,16 +1,16 @@
-package org.firstinspires.ftc.teamcode;
+package org.firstinspires.ftc.teamcode.Subsystens;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.HardwareMap;
+import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 public class Drivetrain {
 
     private DcMotor leftDrive;
     private DcMotor rightDrive;
     // EXEMPLO TRAÇAO SIMPLES
-    public Drivetrain(HardwareMap hardwareMap) {
-        leftDrive = hardwareMap.get(DcMotor.class, "left_drive");
-        rightDrive = hardwareMap.get(DcMotor.class, "right_drive");
+    public Drivetrain(LinearOpMode Opmode) {
+        leftDrive = Opmode.hardwareMap.get(DcMotor.class, "left_drive");
+        rightDrive = Opmode.hardwareMap.get(DcMotor.class, "right_drive");
 
         leftDrive.setDirection(DcMotor.Direction.FORWARD);
         rightDrive.setDirection(DcMotor.Direction.REVERSE);

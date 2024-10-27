@@ -1,9 +1,11 @@
-package org.firstinspires.ftc.teamcode;
+package org.firstinspires.ftc.teamcode.Vision;
 
 import android.content.res.AssetFileDescriptor;
 
 import org.tensorflow.lite.Interpreter;
-import org.firstinspires.ftc.robotcore.external.hardware.HardwareMap;
+
+import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import java.io.FileInputStream;
 import java.nio.MappedByteBuffer;
@@ -19,8 +21,8 @@ public class GamePieceDetector {
     private Interpreter interpreter;
     private HardwareMap hardwareMap;  // Definindo o hardwareMap aqui
 
-    public GamePieceDetector(HardwareMap hardwareMap) {
-        this.hardwareMap = hardwareMap;  // Passa o hardwareMap pro construtor
+    public GamePieceDetector(LinearOpMode Opmode) {
+        Opmode.hardwareMap = hardwareMap;  // Passa o hardwareMap pro construtor
         try {
             interpreter = new Interpreter(loadModelFile());  // carrega o modelo TFLite
         } catch (Exception e) {

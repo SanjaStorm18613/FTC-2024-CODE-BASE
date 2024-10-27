@@ -1,7 +1,7 @@
-package org.firstinspires.ftc.teamcode;
+package org.firstinspires.ftc.teamcode.Subsystens;
 
+import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.Servo;
-import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.DigitalChannel;
 
 public class ClawMechanism {
@@ -13,9 +13,9 @@ public class ClawMechanism {
     private Servo clawServo;
     private DigitalChannel limitSwitchClaw;
 
-    public ClawMechanism(HardwareMap hardwareMap) {
-        clawServo = hardwareMap.get(Servo.class, "claw_servo");
-        limitSwitchClaw = hardwareMap.get(DigitalChannel.class, "limit_switch_claw");
+    public ClawMechanism(LinearOpMode Opmode) {
+        clawServo = Opmode.hardwareMap.get(Servo.class, "claw_servo");
+        limitSwitchClaw = Opmode.hardwareMap.get(DigitalChannel.class, "limit_switch_claw");
     }
     //Todo
     //Macro para agarrar gamepiece
