@@ -58,7 +58,7 @@ public class FTCRobotTeleOp extends LinearOpMode {
     private void initializeRobot() {
         drivetrain = new Drivetrain(this);
         armMechanism = new ArmMechanism(this);
-        clawMechanism = new ClawMechanism(this, armMechanism);
+        clawMechanism = new ClawMechanism(this);
         permissionManager = new CameraPermissionManager();
     }
 
