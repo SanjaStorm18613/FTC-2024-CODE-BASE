@@ -12,16 +12,22 @@ public class ClawMechanism {
 
     private Servo clawServo;
     private DigitalChannel limitSwitchClaw;
+    public ArmMechanism arm;
 
-    public ClawMechanism(LinearOpMode Opmode) {
+    public ClawMechanism(LinearOpMode Opmode, ArmMechanism arm) {
         clawServo = Opmode.hardwareMap.get(Servo.class, "claw_servo");
         limitSwitchClaw = Opmode.hardwareMap.get(DigitalChannel.class, "limit_switch_claw");
+        this.arm = arm;
     }
     //Todo
     //Macro para agarrar gamepiece
     public void grabSample() {
         if (!isClawClosed()) {
             clawServo.setPosition(1);
+            
+        }
+        if(arm.cheggo()){
+
         }
     }
 

@@ -35,8 +35,11 @@ public class FTCRobotTeleOp extends LinearOpMode {
             //AJUSTAR CONFORME ESPECIFICAÇAO
             double drive = -gamepad1.left_stick_y;
             double turn = gamepad1.right_stick_x;
+            double side = gamepad1.left_stick_x;
+            double stop = gamepad1.right_trigger;
 
-            drivetrain.drive(drive, turn);
+
+            drivetrain.driveTele(drive,side,turn,stop);
 
             if (gamepad1.dpad_up) {
                 armMechanism.raiseArm();
@@ -55,7 +58,7 @@ public class FTCRobotTeleOp extends LinearOpMode {
     private void initializeRobot() {
         drivetrain = new Drivetrain(this);
         armMechanism = new ArmMechanism(this);
-        clawMechanism = new ClawMechanism(this);
+        clawMechanism = new ClawMechanism(this, armMechanism);
         permissionManager = new CameraPermissionManager();
     }
 

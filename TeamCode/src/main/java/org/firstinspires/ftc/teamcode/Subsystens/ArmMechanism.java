@@ -10,10 +10,17 @@ public class ArmMechanism {
     // discutir com mecanica e ajustar conforme necessario
     private DcMotor armMotor;
     private DigitalChannel limitSwitch;
+    int state = 0;
+    boolean btup = true;
+    boolean btdown = true;
 
     public ArmMechanism(LinearOpMode Opmode) {
         armMotor = Opmode.hardwareMap.get(DcMotor.class, "arm_motor");
         limitSwitch = Opmode.hardwareMap.get(DigitalChannel.class, "limit_switch_arm");
+        armMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+    }
+    public boolean cheggo(){
+        return true;
     }
 
     //TODO
@@ -25,6 +32,40 @@ public class ArmMechanism {
             stopArm();
         }
     }
+
+    public void StateUp(boolean buttonStateUp) {
+        if (state < 3 && buttonStateUp && btup){
+            state = state + 1;
+        }
+        btup = !buttonStateUp;
+    }
+
+    public void StateDown(boolean buttonStateDown) {
+        if (state > 0 && buttonStateDown && btdown){
+            state = state - 1;
+        }
+        btdown = !buttonStateDown;
+    }
+
+    public void setState(boolean buttonStateDown) {
+        switch (state){
+            case 0:
+                armMotor.setTargetPosition(0);
+                break;
+            case 1:
+                armMotor.setTargetPosition(10);
+                break;
+            case 2:
+                armMotor.setTargetPosition(20);
+                break;
+            case 3:
+                armMotor.setTargetPosition(30);
+                break;
+
+        }
+        armMotor.setPower(1);
+    }
+
     //TODO
     //Macro abaixar braço
     public void lowerArm() {

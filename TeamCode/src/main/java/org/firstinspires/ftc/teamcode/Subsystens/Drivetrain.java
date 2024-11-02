@@ -5,43 +5,73 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 public class Drivetrain {
 
-    private DcMotor leftDrive;
-    private DcMotor rightDrive;
+    private DcMotor BackLeftDrive;
+    private DcMotor BackRightDrive;
+    private DcMotor FrontLeftDrive;
+    private DcMotor FrontRightDrive;
+
     // EXEMPLO TRAÇAO SIMPLES
     public Drivetrain(LinearOpMode Opmode) {
-        leftDrive = Opmode.hardwareMap.get(DcMotor.class, "left_drive");
-        rightDrive = Opmode.hardwareMap.get(DcMotor.class, "right_drive");
+        BackLeftDrive = Opmode.hardwareMap.get(DcMotor.class, "back_left_drive");
+        BackRightDrive = Opmode.hardwareMap.get(DcMotor.class, "back_right_drive");
+        FrontLeftDrive = Opmode.hardwareMap.get(DcMotor.class, "front_left_drive");
+        FrontRightDrive = Opmode.hardwareMap.get(DcMotor.class, "front_right_drive");
 
-        leftDrive.setDirection(DcMotor.Direction.FORWARD);
-        rightDrive.setDirection(DcMotor.Direction.REVERSE);
+        BackLeftDrive.setDirection(DcMotor.Direction.FORWARD);
+        BackRightDrive.setDirection(DcMotor.Direction.REVERSE);
     }
 
     public void moveToDropZone() {
-        leftDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        rightDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        BackLeftDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        BackRightDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
-        leftDrive.setTargetPosition(1000);
-        rightDrive.setTargetPosition(1000);
+        BackLeftDrive.setTargetPosition(1000);
+        BackRightDrive.setTargetPosition(1000);
 
-        leftDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        rightDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        BackLeftDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        BackRightDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
-        leftDrive.setPower(0.5);
-        rightDrive.setPower(0.5);
+        BackLeftDrive.setPower(0.5);
+        BackRightDrive.setPower(0.5);
 
-        while (leftDrive.isBusy() && rightDrive.isBusy()) {
+        while (BackLeftDrive.isBusy() && BackRightDrive.isBusy()) {
            //TODO
            // AJUSTAR REFERENCIAS CONFORME NECESSARIO
         }
     }
 
-    public void drive(double drivePower, double turnPower) {
-        leftDrive.setPower(drivePower + turnPower);
-        rightDrive.setPower(drivePower - turnPower);
+    public void driveTele(double frontPower, double sidePower, double turnPower, double stopPower) {
+        BackLeftDrive.setPower((frontPower + sidePower - turnPower) * -(stopPower - 1));
+        BackRightDrive.setPower((frontPower - sidePower + turnPower) * -(stopPower - 1));
+        FrontLeftDrive.setPower((frontPower + sidePower + turnPower) * -(stopPower - 1));
+        FrontRightDrive.setPower((frontPower - sidePower - turnPower) * -(stopPower - 1));
+    }
+
+    public void autoFront(double frontPower) {
+        BackLeftDrive.setPower(frontPower);
+        BackRightDrive.setPower(frontPower);
+        FrontLeftDrive.setPower(frontPower);
+        FrontRightDrive.setPower(frontPower);
+    }
+
+    public void autoSide(double sidePower) {
+        BackLeftDrive.setPower(-sidePower);
+        BackRightDrive.setPower(sidePower);
+        FrontLeftDrive.setPower(sidePower);
+        FrontRightDrive.setPower(-sidePower);
+    }
+
+    public void autoTurn(double turnPower) {
+        BackLeftDrive.setPower(-turnPower);
+        BackRightDrive.setPower(turnPower);
+        FrontLeftDrive.setPower(-turnPower);
+        FrontRightDrive.setPower(turnPower);
     }
 
     public void stop() {
-        leftDrive.setPower(0);
-        rightDrive.setPower(0);
+        BackLeftDrive.setPower(0);
+        BackRightDrive.setPower(0);
+        FrontLeftDrive.setPower(0);
+        FrontRightDrive.setPower(0);
     }
 }
