@@ -63,6 +63,7 @@ public class ArmMechanism {
                 break;
 
         }
+        armMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         armMotor.setPower(1);
     }
 
