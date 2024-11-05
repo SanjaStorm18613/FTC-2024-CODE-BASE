@@ -56,4 +56,3 @@ public class FTCRobotAutonomous extends LinearOpMode {
         clawMechanism = new ClawMechanism(this);
     }
 }
-}

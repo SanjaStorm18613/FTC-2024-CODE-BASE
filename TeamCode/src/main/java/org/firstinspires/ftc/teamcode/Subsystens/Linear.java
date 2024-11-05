@@ -2,7 +2,6 @@ package org.firstinspires.ftc.teamcode.Subsystens;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
 public class Linear {
 
@@ -32,19 +31,23 @@ public class Linear {
             btdown = !ButtonStateDown;
     }
 
-    public void setState(boolean ButtonStateDown){
+    public void setStateLinearArm(int armstate) {
+        state = armstate;
+    }
+
+    public void setStatebt(boolean ButtonStateDown, int g2rightstickY){
         switch (state){
             case 0:
-                LinearMotor.setTargetPosition(0);
+                LinearMotor.setTargetPosition(0 + g2rightstickY);
                 break;
             case 1:
-                LinearMotor.setTargetPosition(10);
+                LinearMotor.setTargetPosition(10 + g2rightstickY);
                 break;
             case 2:
-                LinearMotor.setTargetPosition(20);
+                LinearMotor.setTargetPosition(20 + g2rightstickY);
                 break;
             case 3:
-                LinearMotor.setTargetPosition(30);
+                LinearMotor.setTargetPosition(30 + g2rightstickY);
                 break;
         }
         LinearMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
@@ -52,6 +55,7 @@ public class Linear {
     }
 
     public void linearup (){
+
         LinearMotor.setTargetPosition( LinearMotor.getTargetPosition() + 1);
     }
 

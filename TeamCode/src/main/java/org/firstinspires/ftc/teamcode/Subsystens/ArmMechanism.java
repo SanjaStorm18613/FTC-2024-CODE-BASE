@@ -1,13 +1,12 @@
 package org.firstinspires.ftc.teamcode.Subsystens;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DigitalChannel;
 
 public class ArmMechanism {
     //exemplo de braço. acho que deveriamos focar no level 1 e 0
-    //TODO
-    // discutir com mecanica e ajustar conforme necessario
     private DcMotor armMotor;
     private DigitalChannel limitSwitch;
     int state = 0;
@@ -19,19 +18,7 @@ public class ArmMechanism {
         limitSwitch = Opmode.hardwareMap.get(DigitalChannel.class, "limit_switch_arm");
         armMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
     }
-    public boolean cheggo(){
-        return true;
-    }
 
-    //TODO
-    // Macro erguer braço
-    public void raiseArm() {
-        if (!limitSwitch.getState()) {
-            armMotor.setPower(0.5);
-        } else {
-            stopArm();
-        }
-    }
 
     public void StateUp(boolean buttonStateUp) {
         if (state < 3 && buttonStateUp && btup){
@@ -47,30 +34,33 @@ public class ArmMechanism {
         btdown = !buttonStateDown;
     }
 
-    public void setState(boolean buttonStateDown) {
+    public int getState(){
+        return state;
+    }
+
+    public void setStateArm(int armstate) {
+        state = armstate;
+    }
+
+
+    public void setStatebt(int g2leftstickY) {
         switch (state){
             case 0:
-                armMotor.setTargetPosition(0);
+                armMotor.setTargetPosition(0 + (int) (g2leftstickY));
                 break;
             case 1:
-                armMotor.setTargetPosition(10);
+                armMotor.setTargetPosition(10 + (int) (g2leftstickY));
                 break;
             case 2:
-                armMotor.setTargetPosition(20);
+                armMotor.setTargetPosition(20 + (int) (g2leftstickY));
                 break;
             case 3:
-                armMotor.setTargetPosition(30);
+                armMotor.setTargetPosition(30 + (int) (g2leftstickY));
                 break;
 
         }
         armMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         armMotor.setPower(1);
-    }
-
-    //TODO
-    //Macro abaixar braço
-    public void lowerArm() {
-        armMotor.setPower(-0.5);
     }
 
     public void stopArm() {
