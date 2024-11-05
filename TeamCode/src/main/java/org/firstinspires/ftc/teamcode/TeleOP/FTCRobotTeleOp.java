@@ -5,6 +5,7 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import org.firstinspires.ftc.teamcode.Subsystens.ArmMechanism;
 import org.firstinspires.ftc.teamcode.Subsystens.ClawMechanism;
+import org.firstinspires.ftc.teamcode.Subsystens.Climbing;
 import org.firstinspires.ftc.teamcode.Subsystens.Drivetrain;
 import org.firstinspires.ftc.teamcode.Subsystens.Linear;
 import org.firstinspires.ftc.teamcode.Vision.CameraPermissionManager;
@@ -22,6 +23,7 @@ public class FTCRobotTeleOp extends LinearOpMode {
     private ClawMechanism clawMechanism;
     private Linear linear;
     private MultiSystems mult;
+    private Climbing climbing;
     boolean btup = true;
     boolean btdown = true;
 
@@ -52,9 +54,9 @@ public class FTCRobotTeleOp extends LinearOpMode {
             drivetrain.driveTele(drive,side,turn,stop);
 
             //claw
-            if (gamepad1.a && !clawMechanism.isClawClosed()) {
+            if (gamepad1.x && !clawMechanism.isClawClosed()) {
                 clawMechanism.grabSample();
-            } else if (gamepad1.a && clawMechanism.isClawClosed()) {
+            } else if (gamepad1.x && clawMechanism.isClawClosed()) {
                 clawMechanism.releaseSample();
             }
 
@@ -70,6 +72,19 @@ public class FTCRobotTeleOp extends LinearOpMode {
             //macro pegar peça
             if (gamepad2.y) {
                 mult.TakePiece();
+            }
+
+            //climbing
+            if (gamepad1.dpad_up){
+                climbing.raiseClimbing();
+            }
+
+            if (gamepad1.dpad_down){
+                climbing.lowerClimbing();
+            }
+
+            if (gamepad1.x){
+                climbing.stopClimbing();
             }
 
         }
