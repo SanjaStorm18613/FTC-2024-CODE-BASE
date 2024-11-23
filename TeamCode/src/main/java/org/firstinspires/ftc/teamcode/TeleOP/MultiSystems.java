@@ -4,19 +4,20 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import org.firstinspires.ftc.teamcode.Subsystens.ArmMechanism;
 import org.firstinspires.ftc.teamcode.Subsystens.ClawMechanism;
+import org.firstinspires.ftc.teamcode.Subsystens.Climbing;
 import org.firstinspires.ftc.teamcode.Subsystens.Drivetrain;
 import org.firstinspires.ftc.teamcode.Subsystens.Linear;
-import org.firstinspires.ftc.teamcode.Vision.CameraPermissionManager;
+//import org.firstinspires.ftc.teamcode.Vision.CameraPermissionManager;
 
 public class MultiSystems {
-    private CameraPermissionManager permissionManager;
+    //private CameraPermissionManager permissionManager;
 
     public Drivetrain drivetrain;
     public ArmMechanism armMechanism;
     public ClawMechanism clawMechanism;
     public Linear linear;
 
-    public MultiSystems(LinearOpMode Opmode ,ArmMechanism armMechanism, Linear linear, ClawMechanism claw) {
+    public MultiSystems(LinearOpMode Opmode , ArmMechanism armMechanism, Linear linear, ClawMechanism claw, Climbing climbing) {
         this.armMechanism = armMechanism;
         this.linear = linear;
         this.clawMechanism = claw;

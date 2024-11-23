@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.Vision;
+/*package org.firstinspires.ftc.teamcode.Vision;
 
 import android.Manifest;
 import android.os.Bundle;
@@ -38,7 +38,7 @@ public class CameraPermissionManager extends AppCompatActivity implements EasyPe
     public void simulatePermissionForCI() {
         if (isRunningInCI()) {
             onPermissionsGranted(RC_CAMERA_PERM, new ArrayList<>());
-        }else{
+        } else {
             requestCameraPermission();
         }
     }
@@ -65,4 +65,4 @@ public class CameraPermissionManager extends AppCompatActivity implements EasyPe
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         EasyPermissions.onRequestPermissionsResult(requestCode, permissions, grantResults, this);
     }
-}
+}*/

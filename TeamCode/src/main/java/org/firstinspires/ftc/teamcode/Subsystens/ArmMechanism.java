@@ -12,6 +12,8 @@ public class ArmMechanism {
     int state = 0;
     boolean btup = true;
     boolean btdown = true;
+    double vel = 1;
+    double posi;
 
     public ArmMechanism(LinearOpMode Opmode) {
         armMotor = Opmode.hardwareMap.get(DcMotor.class, "arm_motor");
@@ -23,6 +25,7 @@ public class ArmMechanism {
     public void StateUp(boolean buttonStateUp) {
         if (state < 3 && buttonStateUp && btup){
             state = state + 1;
+            posi = 0;
         }
         btup = !buttonStateUp;
     }
@@ -30,8 +33,13 @@ public class ArmMechanism {
     public void StateDown(boolean buttonStateDown) {
         if (state > 0 && buttonStateDown && btdown){
             state = state - 1;
+            posi = 0;
         }
         btdown = !buttonStateDown;
+    }
+
+    public int getPosi(){
+        return (int) posi;
     }
 
     public int getState(){
@@ -43,19 +51,23 @@ public class ArmMechanism {
     }
 
 
-    public void setStatebt(int g2leftstickY) {
+    public void setStatebt(double g2leftstickY) {
+        posi += (vel * g2leftstickY);
+
+
         switch (state){
+
             case 0:
-                armMotor.setTargetPosition(0 + (int) (g2leftstickY));
+                armMotor.setTargetPosition(0 + (int) (posi));
                 break;
             case 1:
-                armMotor.setTargetPosition(10 + (int) (g2leftstickY));
+                armMotor.setTargetPosition(50 + (int) (posi));
                 break;
             case 2:
-                armMotor.setTargetPosition(20 + (int) (g2leftstickY));
+                armMotor.setTargetPosition(100 + (int) (posi));
                 break;
             case 3:
-                armMotor.setTargetPosition(30 + (int) (g2leftstickY));
+                armMotor.setTargetPosition(150 + (int) (posi));
                 break;
 
         }

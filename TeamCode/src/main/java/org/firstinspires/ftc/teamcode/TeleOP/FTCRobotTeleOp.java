@@ -8,7 +8,7 @@ import org.firstinspires.ftc.teamcode.Subsystens.ClawMechanism;
 import org.firstinspires.ftc.teamcode.Subsystens.Climbing;
 import org.firstinspires.ftc.teamcode.Subsystens.Drivetrain;
 import org.firstinspires.ftc.teamcode.Subsystens.Linear;
-import org.firstinspires.ftc.teamcode.Vision.CameraPermissionManager;
+//import org.firstinspires.ftc.teamcode.Vision.CameraPermissionManager;
 
 @TeleOp(name="FTCRobotTeleOp", group="FTC")
 public class FTCRobotTeleOp extends LinearOpMode {
@@ -16,7 +16,7 @@ public class FTCRobotTeleOp extends LinearOpMode {
     //apenas para CI
     //TODO
     // ajudar a implentar o opencv nessa bagaça. ci ta delisgado
-    private CameraPermissionManager permissionManager;
+   // private CameraPermissionManager permissionManager;
 
     private Drivetrain drivetrain;
     private ArmMechanism armMechanism;
@@ -32,7 +32,7 @@ public class FTCRobotTeleOp extends LinearOpMode {
     public void runOpMode() {
         // Inicializa o robô e gerencia as permissões
         initializeRobot();
-        checkAndRequestPermissions();
+        //checkAndRequestPermissions();
 
         telemetry.addData("Status", "Aguardando início...");
         telemetry.update();
@@ -51,11 +51,13 @@ public class FTCRobotTeleOp extends LinearOpMode {
             double stop = gamepad1.right_trigger;
 
             //drivetrain
-            drivetrain.driveTele(drive,side,turn,stop);
+            drivetrain.driveTele(drive, side, turn, stop);
+            //drivetrain.autonomusdriveFB(1000);
+            drivetrain.autonomusdriveLR(1000);
 
             //claw
             if (gamepad1.x && !clawMechanism.isClawClosed()) {
-                clawMechanism.grabSample();
+                clawMechanism.grabSample(gamepad1.x);
             } else if (gamepad1.x && clawMechanism.isClawClosed()) {
                 clawMechanism.releaseSample();
             }
@@ -64,10 +66,13 @@ public class FTCRobotTeleOp extends LinearOpMode {
             armMechanism.StateUp(gamepad2.dpad_up);
             armMechanism.StateDown(gamepad2.dpad_down);
             //arm up/down
-            armMechanism.setStatebt((int) (gamepad2.left_stick_y));
+            armMechanism.setStatebt((int) (-gamepad2.left_stick_y));
+            linear.setStatebt((int) (-gamepad2.right_stick_y));
 
             //arm linear
             mult.ArmLinear();
+            linear.upstate(gamepad2.dpad_up);
+            linear.downstate(gamepad2.dpad_down);
 
             //macro pegar peça
             if (gamepad2.y) {
@@ -75,33 +80,35 @@ public class FTCRobotTeleOp extends LinearOpMode {
             }
 
             //climbing
-            if (gamepad1.dpad_up){
+            if (gamepad1.dpad_up) {
                 climbing.raiseClimbing();
-            }
-
-            if (gamepad1.dpad_down){
+            } else if (gamepad1.dpad_down) {
                 climbing.lowerClimbing();
-            }
-
-            if (gamepad1.x){
+            } else {
                 climbing.stopClimbing();
             }
+
+
+            /*telemetry.addData("State", armMechanism.getState());
+            telemetry.addData("posi", armMechanism.getPosi());
+            telemetry.update();*/
 
         }
     }
 
     private void initializeRobot() {
+        climbing = new Climbing(this);
         drivetrain = new Drivetrain(this);
         armMechanism = new ArmMechanism(this);
         clawMechanism = new ClawMechanism(this);
-        permissionManager = new CameraPermissionManager();
+        //permissionManager = new CameraPermissionManager();
         linear = new Linear(this);
 
-        mult = new MultiSystems(this, armMechanism, linear, clawMechanism);
+        mult = new MultiSystems(this, armMechanism, linear, clawMechanism, climbing);
     }
 
-    private void checkAndRequestPermissions() {
+    /*private void checkAndRequestPermissions() {
 
-        permissionManager.simulatePermissionForCI();
-    }
+       permissionManager.simulatePermissionForCI();
+    }*/
 }

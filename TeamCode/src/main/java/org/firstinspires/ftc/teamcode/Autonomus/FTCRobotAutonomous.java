@@ -31,7 +31,7 @@ public class FTCRobotAutonomous extends LinearOpMode {
             if (gamePieceDetector.detectInitialSample()) {
                 //drivetrain.moveToSample();  // Vai pro SAMPLE
                 //aprilTagDetector.detectAprilTags();  // Ajusta com as tags
-                armMechanism.raiseArm();  // Sobe o braço
+                //armMechanism.raiseArm();  // Sobe o braço
                 clawMechanism.releaseSample();  // Solta o SAMPLE
                 drivetrain.moveToDropZone();  // Vai pra zona de depósito
             }
@@ -39,8 +39,8 @@ public class FTCRobotAutonomous extends LinearOpMode {
             if (gamePieceDetector.detectNewSample()) {
                 //drivetrain.moveToSample();  // Mesma coisa pra um novo SAMPLE
                 //aprilTagDetector.detectAprilTags();
-                armMechanism.lowerArm();  // Desce o braço
-                clawMechanism.grabSample();  // Pega o SAMPLE
+                //armMechanism.lowerArm();  // Desce o braço
+                clawMechanism.grabSample(gamepad1.x);  // Pega o SAMPLE
                 drivetrain.moveToDropZone();
             }
         }

@@ -10,29 +10,42 @@ public class ClawMechanism {
     //TODO
     // discutir entre areas qual caminho seguir e adaptar conforme necessario
 
-    private Servo clawServo;
+    private Servo clawServo1;
+    private Servo clawServo2;
     private DigitalChannel limitSwitchClaw;
+    boolean btx = true;
 
     public ClawMechanism(LinearOpMode Opmode) {
-        clawServo = Opmode.hardwareMap.get(Servo.class, "claw_servo");
+        clawServo1 = Opmode.hardwareMap.get(Servo.class, "claw_servo1");
+        clawServo2 = Opmode.hardwareMap.get(Servo.class, "claw_servo2");
+        clawServo2.setDirection(Servo.Direction.REVERSE);
+        releaseSample();
         limitSwitchClaw = Opmode.hardwareMap.get(DigitalChannel.class, "limit_switch_claw");
 
     }
     //Todo
     //Macro para agarrar gamepiece
-    public void grabSample() {
-        if (!isClawClosed()) {
-            clawServo.setPosition(1);
+    public void grabSample(boolean btxx) {
+        if (!isClawClosed() && btxx && btx) {
+            clawServo1.setPosition(0.4);
+            clawServo2.setPosition(0.4);
 
         }
+        btx = !btxx;
 
     }
 
     public void releaseSample() {
-        clawServo.setPosition(0);
+        clawServo1.setPosition(0.1);
+        clawServo2.setPosition(0.1);
     }
 
     public boolean isClawClosed() {
-        return !limitSwitchClaw.getState();
+        if (clawServo1.getPosition() == 1) {
+        return true;
+        }
+        else {
+            return false;
+        }
     }
 }
